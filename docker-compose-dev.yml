@@ -1,0 +1,39 @@
+# 도커 컴포즈 버전
+version: "3"
+#실행하는 컨테이너들 정의
+services:
+  # 서비스 이름
+  react:
+    #현 디렉터리에 있는 Dockerfile 사용
+    build:
+      # 도커 이미지를 구성하기 위한 파일과 폴더들이 있는 위치
+      context: .
+      # 도커 파일 지정
+      dockerfile: Dockerfile.dev
+    # 포트 매핑 로컬 포트: 컨테이너 포트
+    ports:
+      - "3000:3000"
+    # 로컬에 있는 파일들 매핑
+    volumes:
+      - /usr/src/app/node_modules
+      - ./:/usr/src/app
+
+    # 리액트 버그 수정하기 위한 코드
+    stdin_open: true
+
+
+  # 서비스 이름
+  tests:
+    # 현 디렉터리에 있는 Dockerfile 사용
+    build:
+      # 도커 이미지를 구성하기 위한 파일들 위치
+      context: .
+      # 도커 파일 지정
+      dockerfile: Dockerfile.dev
+
+    # 로컬에 있는 파일 매핑
+    volumes:
+      - /usr/src/app/node_modules
+      - ./:/usr/src/app
+    # 테스트 컨테이너가 시작될 때 실행되는 명령어
+    command: ["yarn", "run", "test"]
