@@ -1,0 +1,22 @@
+# 관리자 권한 갖기
+sudo: required
+
+# 언어(플랫폼)를 선택
+language: generic
+
+# 도커 환경 구성
+services:
+  - docker
+
+# 스크립트를 실행할 수 있는 환경 구성
+before_install:
+  - echo "start creating an image with dockerfile"
+  - docker build -t dk/docker-react-app -f Dockerfile.dev .
+
+# 실행할 스크립트(테스트 실행)
+script:
+  - docker run -e CI=true dk/docker-react-app yarn run test -- -- coverage
+
+# 테스트 성공 후 해야할 일(Test Success 출력)
+after_success:
+  - echo "Test Success"
