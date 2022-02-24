@@ -15,7 +15,7 @@ before_install:
 
 # 실행할 스크립트(테스트 실행)
 script:
-  - docker run -e CI=true dk/docker-react-app yarn run test -- -- coverage
+  - docker run -e CI=true dk/docker-react-app npm run test -- --coverage
 
 # 테스트 성공 후 해야할 일(Test Success 출력)
 after_success:
