@@ -4,6 +4,10 @@ sudo: required
 # 언어(플랫폼)를 선택
 language: generic
 
+branches:
+  - only:
+      - main
+
 # 도커 환경 구성
 services:
   - docker
@@ -20,3 +24,11 @@ script:
 # 테스트 성공 후 해야할 일(Test Success 출력)
 after_success:
   - echo "Test Success"
+  -
+
+# CI 실행 완료 후 메일로 알람
+notifications:
+  email:
+    recipients:
+      - dokyung226@gmail.com
+
