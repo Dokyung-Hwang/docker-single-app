@@ -15,7 +15,7 @@ before_install:
 
 #실행할 스크립트
 script:
-  - docker run -e CI=true loy124/docker-react npm run test -- --coverage
+  - docker run -e CI=true dk/docker-react npm run test -- --coverage
 
 #테스트 성공 후
 after_success:
