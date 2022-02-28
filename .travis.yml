@@ -1,29 +1,22 @@
 # 관리자 권한 갖기
 sudo: required
 
-# 언어(플랫폼)를 선택
+#언어(플램폿)선택
 language: generic
 
-# 도커 환경 구성
+#도커 환경 구성
 services:
   - docker
 
-# 스크립트를 실행할 수 있는 환경 구성
+#스크립트를 실행할 수 있는 환경
 before_install:
-  - echo "start creating an image with dockerfile"
-  - docker build -t dk/docker-react-app -f Dockerfile.dev .
+  - echo "start Creating an image with dockerfile"
+  - docker build -t loy124/docker-react -f Dockerfile.dev .
 
-# 실행할 스크립트(테스트 실행)
+#실행할 스크립트
 script:
-  - docker run -e CI=true dk/docker-react-app npm run test -- --coverage
+  - docker run -e CI=true loy124/docker-react npm run test -- --coverage
 
-# 테스트 성공 후 해야할 일(Test Success 출력)
+#테스트 성공 후
 after_success:
   - echo "Test Success"
-
-# CI 실행 완료 후 메일로 알람
-notifications:
-  email:
-    recipients:
-      - dokyung226@gmail.com
-
