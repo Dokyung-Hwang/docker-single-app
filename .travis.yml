@@ -4,11 +4,6 @@ sudo: required
 # 언어(플랫폼)를 선택
 language: generic
 
-# main 브랜치에서 push될 때만 수행
-branches:
-  - only:
-      - main
-
 # 도커 환경 구성
 services:
   - docker
