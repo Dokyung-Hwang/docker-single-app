@@ -3,11 +3,7 @@ sudo: required
 
 # 언어(플랫폼)를 선택
 language: generic
-"os": [
-  "linux"
-],
-dist: focal
-"sudo": true,
+
 # 도커 환경 구성
 services:
   - docker
