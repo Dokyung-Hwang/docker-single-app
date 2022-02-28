@@ -29,9 +29,4 @@ after_success:
   - echo "Test Success"
   -
 
-# CI 실행 완료 후 메일로 알람
-notifications:
-  email:
-    recipients:
-      - dokyung226@gmail.com
 
