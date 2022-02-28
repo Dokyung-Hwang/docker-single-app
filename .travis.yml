@@ -17,6 +17,17 @@ before_install:
 script:
   - docker run -e CI=true dk/docker-react-app yarn run test -- --coverage
 
-#테스트 성공 후
-after_success:
-  - echo "Test Success"
+
+# 배포 관련 설정
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: ap-northeast-2
+  app: docker-react-app
+  env: DockerReactApp-env
+  bucket_name: elasticbeanstalk-ap-northeast-2-972153559337
+  bucket_path: docker-react-app
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
